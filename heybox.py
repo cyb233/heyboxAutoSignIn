@@ -26,6 +26,7 @@ except Exception as e:
     print(e)
 
 sign_path = 'https://api.xiaoheihe.cn/task/sign/'
+server_api = 'https://sc.ftqq.com/'
 
 def apiRequest_get(url,cookie,params):
     params_get = params
