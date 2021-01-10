@@ -77,7 +77,7 @@ def mimikko(cookie):
     sign_data = apiRequest_get(sign_path + "?os_type=Android&version=1.3.118&hkey=" + hkey + "&_time=" + sign_time,cookie,"")
     if sign_data:
         if sign_data.get('status')=="ok":
-            sign_result_post = '签到成功：' + sign_data['msg'] + '\n'
+            sign_result_post = '签到成功：' + str(sign_data['sign_in_streak']) + '天  \n' + sign_data['msg'] + '\n'
         elif sign_data.get('status')=="login":
             sign_result_post = '签到失败，今日已签到\n'
         else:
