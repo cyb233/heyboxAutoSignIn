@@ -79,7 +79,7 @@ print('hkey: ',hkey)
 
 
 def heybox(cookie):
-    sign_data = apiRequest_get(sign_path + "?heybox_id=3265163&imei=8be4ead13ab97cc6&os_type=Android&os_version=5.1.1&version=1.3.120&channel=heybox_xiaomi" + "&hkey=" + hkey + "&_time=" + sign_time,cookie,"")
+    sign_data = apiRequest_get(sign_path + "?heybox_id=3265163&imei=8be4ead13ab97cc6&os_type=Android&os_version=5.1.1&version=1.3.118&channel=heybox_xiaomi" + "&hkey=" + hkey + "&_time=" + sign_time,cookie,"")
     if sign_data:
         if sign_data.get('status')=="ok":
             sign_result_post = '签到成功：' + str(sign_data['result']['sign_in_streak']) + '天  \n' + sign_data['msg'] + '\n'
