@@ -24,9 +24,9 @@
  - 在设置中创建action secrets `SCKEY`
 ![secrets2](/pic/Screenshot_2021_0110_131647.png)
 
-6. 使用效果：
-暂无
-;![result](/pic/)
+6. 使用效果：  
+hkey算法太旧无法获得奖励……
+![result](/pic/IMG20210111054842.jpg)
 
 ## 致谢
 [小黑盒逆向分析笔记（二）](https://blog.chrxw.com/archives/2020/08/05/1347.html)中hkey的获取方法
