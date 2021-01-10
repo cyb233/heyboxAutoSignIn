@@ -66,10 +66,11 @@ def gen_hkey(url: str,t:int) -> str:
     h = h[:10]
     return(h)
 t=time.time()
-hkey=gen_hkey(sign_path,t)
-print('time: ',t)
-print('hkey: ',hkey)
 sign_time=str(int(t))
+hkey=gen_hkey(sign_path,sign_time)
+print('time: ',sign_time)
+print('hkey: ',hkey)
+
 
 def mimikko(cookie):
     sign_data = apiRequest_get(sign_path + "?os_type=Android&version=1.3.118&hkey=" + hkey + "&_time=" + sign_time,cookie,"")
