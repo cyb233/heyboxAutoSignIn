@@ -88,7 +88,7 @@ if cookie:
     print(sign_result_post)
     try:
         if len(sys.argv)==3:
-            SCKEY = sys.argv[4]
+            SCKEY = sys.argv[2]
             # print("有SCKEY")
             print("正在推送到微信")
             post_info = "?text=小黑盒每日签到&desp=<p>" + sign_result_post
