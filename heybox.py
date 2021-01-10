@@ -48,7 +48,7 @@ def apiRequest_get(url,cookie,params):
         print(ex)
 
 def mimikko(cookie):
-    sign_data = apiRequest_get(sign_path,cookie,"")
+    sign_data = apiRequest_get(sign_path + "?heybox_id=" + heybox_id + "&hkey=" +hkey,cookie,"")
     if sign_data:
         if sign_data.get('status')=="ok":
             sign_result_post = '签到成功：' + sign_data['msg'] + str(sign_data)
