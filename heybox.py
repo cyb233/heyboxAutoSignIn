@@ -25,7 +25,7 @@ try:
 except Exception as e:
     print(e)
 
-sign_path = ''
+sign_path = 'https://api.xiaoheihe.cn/task/sign/'
 
 def apiRequest_get(url,cookie,params):
     params_get = params
