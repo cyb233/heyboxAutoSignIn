@@ -56,17 +56,20 @@ def mimikko(cookie):
             sign_result_post = '签到失败，今日已签到' + str(sign_data)
     else:
         sign_result_post = '签到请求失败' + str(sign_data)
+return sign_result_post
 
-print(sign_result_post)
-try:
-    if len(sys.argv)==5:
-        SCKEY = sys.argv[4]
-        # print("有SCKEY")
-        print("正在推送到微信")
-        post_info = "?text=小黑盒每日签到&desp=<p>" + sign_result_post
-        post_data = requests.get(server_api + SCKEY + '.send' + post_info)
-        print(post_data)
-    else:
-        print("没有SCKEY")
-except Exception as e:
-    print(e)
+if cookie
+    sign_result_post = mimikko(cookie)
+    print(sign_result_post)
+    try:
+        if len(sys.argv)==5:
+            SCKEY = sys.argv[4]
+            # print("有SCKEY")
+            print("正在推送到微信")
+            post_info = "?text=小黑盒每日签到&desp=<p>" + sign_result_post
+            post_data = requests.get(server_api + SCKEY + '.send' + post_info)
+            print(post_data)
+        else:
+            print("没有SCKEY")
+    except Exception as e:
+        print(e)
