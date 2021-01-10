@@ -25,7 +25,7 @@ try:
 except Exception as e:
     print(e)
 
-sign_path = 'https://api.xiaoheihe.cn/task/sign/?heybox_id=3265163&imei=8be4ead13ab97cc6&os_type=Android&os_version=5.1.1&version=1.3.118&channel=heybox_xiaomi'
+sign_path = 'https://api.xiaoheihe.cn/task/sign/?heybox_id=3265163&imei=8be4ead13ab97cc6&os_type=Android&os_version=5.1.1&version=1.3.124&channel=heybox_xiaomi'
 server_api = 'https://sc.ftqq.com/'
 
 def apiRequest_get(url,cookie,params):
@@ -91,6 +91,7 @@ def encode(url: str, t: int) -> str:
                 enc[j], enc[j+1] = enc[j+1], enc[j]
     result = ''.join(enc)
     return(result)
+'''
 # 算法验证
 for i, j, k in test:
     s = encode(i, j)
@@ -101,12 +102,13 @@ for i, j, k in test:
         print(i, j, '测试失败')
         print(k)
         print(s)
-#t=time.time()
-#sign_time=str(int(t))
-#hkey=gen_hkey(sign_path,sign_time)
-#print('time: ',sign_time)
-#print('hkey: ',hkey)
 '''
+t=time.time()
+sign_time=str(int(t))
+hkey=encode('/task/sign',int(t))
+print('time: ',sign_time)
+print('hkey: ',hkey)
+
 
 def heybox(cookie):
     sign_data = apiRequest_get(sign_path + "&hkey=" + hkey + "&_time=" + sign_time,cookie,"")
@@ -136,4 +138,4 @@ if cookie:
             print("没有SCKEY")
     except Exception as e:
         print(e)
-'''
+
