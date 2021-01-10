@@ -49,63 +49,31 @@ def apiRequest_get(url,cookie,params):
         print(ex)
 
 
-# 密钥字符串
-ENC_STATIC = '//Z1q/Gb/R///+9xZ561TtoHjPrv2ew0Ln8vZnI5oObw+++oa3zw++1yd7wMqU/eNKahfmji5/xDu7EuCQfjaRk4TBKXrnhrlnkz@%$^&*(-_-)hahaha(-_-)_time='
-# 测试样例
-test = [
-    ('/account/data_report', 1597919951,
-     '$()++-////0112235555789=CGKMPRUZ__aaaccdeefffhijkmnooqrrtuvwxxz'),
-    ('/game/get_game_name', 1597920084,
-     '$()++-////001233445555679=CGKMPRUZ__aaabeeeffghhjkmmnnortuvwxxz'),
-    ('/bbs/app/feeds/news', 1597920132,
-     '$()++-/////011233345556789@DHKNQTXZ_aabbeeeffhhijlnnoprstuwwxxz'),
-    ('/bbs/app/profile/subscribed/events', 1597920180,
-     '$()++-/////00113334555679=CGKMPRUZ_aaabbbdeeeffhhijkmnnopqrsstuvwxxz'),
-    ('/bbs/app/link/view/time', 1597920216,
-     '$()++-/////00123335556789=CGKMPRUZ_aaabdeeeffhiijklmnopqrtuvwxxz')
-]
-# 计算MD5
-def md5_calc(data: str) -> str:
-    md5 = hashlib.md5()
-    md5.update(data.encode('utf-8'))
-    result = md5.hexdigest()
-    return(result)
-# encode实现
-def encode(url: str, t: int) -> str:
-    enc = list(f'{url}{ENC_STATIC}{t}')
-    count = len(enc) - 1
-    for i in range(0, count):
-        for j in range(0, count-i):
-            if (enc[j] > enc[j+1]):
-                enc[j], enc[j+1] = enc[j+1], enc[j]
-    l = len(enc) // 3 + 1
-    enc += '\0'
-    enc = [enc[3*i] for i in range(0, l)]
-    if enc[-1] == '\0':
-        enc = enc[:-1]
-    enc += list(hex(t))
-    count = len(enc)-1
-    for i in range(0, count):
-        for j in range(0, count-i):
-            if (enc[j] > enc[j+1]):
-                enc[j], enc[j+1] = enc[j+1], enc[j]
-    result = ''.join(enc)
-    return(result)
-'''
-# 算法验证
-for i, j, k in test:
-    s = encode(i, j)
-    if (s == k):
-        print(i, j, '测试通过')
-        print(k)
-    else:
-        print(i, j, '测试失败')
-        print(k)
-        print(s)
-'''
+import time
+import hashlib
+from urllib.parse import urlparse
+def gen_hkey(url: str,t:int) -> str:
+    def url_to_path(url: str) -> str:
+        path = urlparse(url).path
+        if path and path[-1] == '/':
+            path = path[:-1]
+        return(path)
+    def get_md5(data: str):
+        md5 = hashlib.md5()
+        md5.update(data.encode('utf-8'))
+        result = md5.hexdigest()
+        return(result)
+    h = f'{url_to_path(url)}/bfhdkud_time={t}'
+    h = get_md5(h)
+    h = h.replace('a', 'app')
+    h = h.replace('0', 'app')
+    h = get_md5(h)
+    h = h[:10]
+    return(h)
+
 t=time.time()
 sign_time=str(int(t))
-hkey=encode('/task/sign',int(t))
+hkey=gen_hkey(sign_path,sign_time)
 print('time: ',sign_time)
 print('hkey: ',hkey)
 
@@ -137,5 +105,4 @@ if cookie:
         else:
             print("没有SCKEY")
     except Exception as e:
-        print(e)
-
+        print(e
