@@ -35,4 +35,4 @@ jobs:
         run: |
             /opt/hostedtoolcache/Python/3.8.6/x64/bin/python -m pip install --upgrade pip
             pip install requests
-            python heybox.py ${{ secrets.COOKIE }} ${{ secrets.heybox_id }} ${{ secrets.HKEY }} ${{ secrets.SCKEY }}
+            python heybox.py ${{ secrets.COOKIE }} ${{ secrets.SCKEY }}
