@@ -106,7 +106,7 @@ for i, j, k in test:
 #hkey=gen_hkey(sign_path,sign_time)
 #print('time: ',sign_time)
 #print('hkey: ',hkey)
-
+'''
 
 def heybox(cookie):
     sign_data = apiRequest_get(sign_path + "&hkey=" + hkey + "&_time=" + sign_time,cookie,"")
@@ -136,3 +136,4 @@ if cookie:
             print("没有SCKEY")
     except Exception as e:
         print(e)
+'''
