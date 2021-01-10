@@ -50,8 +50,8 @@ def apiRequest_get(url,cookie,params):
 def mimikko(cookie):
     t = time.time()
     print(t)
-    print int(t)
-    print str(int(t))
+    print(int(t))
+    print(str(int(t)))
     sign_data = apiRequest_get(sign_path + "?os_type=Android&version=1.3.135&hkey=" + hkey + "_time=" + str(int(t)),cookie,"")
     if sign_data:
         if sign_data.get('status')=="ok":
