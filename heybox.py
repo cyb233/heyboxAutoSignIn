@@ -77,11 +77,11 @@ def mimikko(cookie):
     sign_data = apiRequest_get(sign_path + "?os_type=Android&version=1.3.118&hkey=" + hkey + "&_time=" + sign_time,cookie,"")
     if sign_data:
         if sign_data.get('status')=="ok":
-            sign_result_post = '签到成功：' + sign_data['msg'] + str(sign_data)
+            sign_result_post = '签到成功：' + sign_data['msg'] + '\n' + str(sign_data)
         else:
-            sign_result_post = '签到失败，今日已签到' + str(sign_data)
+            sign_result_post = '签到失败，今日已签到\n' + str(sign_data)
     else:
-        sign_result_post = '签到请求失败' + str(sign_data)
+        sign_result_post = '签到请求失败\n' + str(sign_data)
     return sign_result_post
 
 if cookie:
@@ -92,7 +92,7 @@ if cookie:
             SCKEY = sys.argv[2]
             # print("有SCKEY")
             print("正在推送到微信")
-            post_info = "?text=小黑盒每日签到&desp=<p>" + sign_result_post
+            post_info = "?text=小黑盒每日签到&desp=" + re.sub('\\n', '  \n', sign_result_post)
             post_data = requests.get(server_api + SCKEY + '.send' + post_info)
             print(post_data)
         else:
