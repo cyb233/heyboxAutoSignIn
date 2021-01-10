@@ -17,9 +17,9 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 try:
     if len(sys.argv)==4 or len(sys.argv)==5:
-        app_id = sys.argv[1]
-        Authorization = sys.argv[2]
-        Energy_code = sys.argv[3]
+        cookie = sys.argv[1]
+        heybox_id = sys.argv[2]
+        hkey = sys.argv[3]
     else:
         print("缺少必要参数！！！")
 except Exception as e:
@@ -50,11 +50,11 @@ def mimikko(cookie):
     sign_data = apiRequest_get(sign_path,cookie,"")
     if sign_data:
         if sign_data.get('status')=="ok":
-            sign_result_post = '签到成功：' + sign_data['msg']
+            sign_result_post = '签到成功：' + sign_data['msg'] + str(sign_data)
         else:
-            sign_result_post = '签到失败，今日已签到'
+            sign_result_post = '签到失败，今日已签到' + str(sign_data)
     else:
-        sign_result_post = '签到请求失败'
+        sign_result_post = '签到请求失败' + str(sign_data)
 
 print(sign_result_post)
 try:
