@@ -34,7 +34,7 @@ def apiRequest_get(url,cookie,params):
         'Referer': 'http://api.maxjia.com/',
         'Accept-Encoding': 'gzip',
         'User-Agent': 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, '
-                      'like Gecko) Chrome/41.0.2272.118 Safari/537.36 ApiMaxJia/1.0'
+                      'like Gecko) Chrome/41.0.2272.118 Safari/537.36 ApiMaxJia/1.0',
         'Connection': 'Keep-Alive',
         'Host': 'api.xiaoheihe.cn',
         'Cookie': cookie
