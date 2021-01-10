@@ -58,7 +58,7 @@ def mimikko(cookie):
         sign_result_post = '签到请求失败' + str(sign_data)
 return sign_result_post
 
-if cookie
+if cookie:
     sign_result_post = mimikko(cookie)
     print(sign_result_post)
     try:
