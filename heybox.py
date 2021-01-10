@@ -56,7 +56,7 @@ def mimikko(cookie):
             sign_result_post = '签到失败，今日已签到' + str(sign_data)
     else:
         sign_result_post = '签到请求失败' + str(sign_data)
-return sign_result_post
+    return sign_result_post
 
 if cookie:
     sign_result_post = mimikko(cookie)
