@@ -12,14 +12,14 @@ import sys
 import time
 import requests
 import re
+import hashlib
+from urllib.parse import urlparse
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 try:
-    if len(sys.argv)==4 or len(sys.argv)==5:
+    if len(sys.argv)==2 or len(sys.argv)==3:
         cookie = sys.argv[1]
-        heybox_id = sys.argv[2]
-        hkey = sys.argv[3]
     else:
         print("缺少必要参数！！！")
 except Exception as e:
@@ -47,9 +47,31 @@ def apiRequest_get(url,cookie,params):
     except Exception as ex:
         print(ex)
 
+def gen_hkey(url: str,t:int) -> str:
+    def url_to_path(url: str) -> str:
+        path = urlparse(url).path
+        if path and path[-1] == '/':
+            path = path[:-1]
+        return(path)
+    def get_md5(data: str):
+        md5 = hashlib.md5()
+        md5.update(data.encode('utf-8'))
+        result = md5.hexdigest()
+        return(result)
+    h = f'{url_to_path(url)}/bfhdkud_time={t}'
+    h = get_md5(h)
+    h = h.replace('a', 'app')
+    h = h.replace('0', 'app')
+    h = get_md5(h)
+    h = h[:10]
+    return(h)
+t=time.time()
+hkey=gen_hkey(sign_path,t)
+print('time: ',t)
+print('hkey: ',hkey)
+sign_time=str(int(t))
+
 def mimikko(cookie):
-    t = time.time()
-    sign_time=str(int(t))
     sign_data = apiRequest_get(sign_path + "?os_type=Android&version=1.3.135&hkey=" + hkey + "&_time=" + sign_time,cookie,"")
     if sign_data:
         if sign_data.get('status')=="ok":
@@ -64,7 +86,7 @@ if cookie:
     sign_result_post = mimikko(cookie)
     print(sign_result_post)
     try:
-        if len(sys.argv)==5:
+        if len(sys.argv)==3:
             SCKEY = sys.argv[4]
             # print("有SCKEY")
             print("正在推送到微信")
