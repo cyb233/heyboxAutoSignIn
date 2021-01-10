@@ -78,8 +78,10 @@ def mimikko(cookie):
     if sign_data:
         if sign_data.get('status')=="ok":
             sign_result_post = '签到成功：' + sign_data['msg'] + '\n' + str(sign_data)
-        else:
+        elif sign_data.get('status')=="login":
             sign_result_post = '签到失败，今日已签到\n' + str(sign_data)
+        else:
+            sign_result_post = '签到失败\n' + str(sign_data)
     else:
         sign_result_post = '签到请求失败\n' + str(sign_data)
     return sign_result_post
