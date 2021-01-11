@@ -1,6 +1,9 @@
 # heyboxAutoSignIn
 小黑盒自动签到
 
+## 求助
+此项目缺乏最新版本的hkey算法
+
 ## 使用
 
 0. 先fork本项目 [![GitHub forks](https://img.shields.io/github/forks/cyb233/heyboxAutoSignIn?style=social)](https://github.com/cyb233/heyboxAutoSignIn)
